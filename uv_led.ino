@@ -1,9 +1,14 @@
 int RXLED = 17;
+int SW = 15;
+int LED1 = 7;
+int LED2 = 14;
+
 void setup() {
   // put your setup code here, to run once:
-  pinMode(14, INPUT);
-//  pinMode(15, OUTPUT);
-//  pinMode(16, OUTPUT);
+  pinMode(SW, INPUT);
+  // led
+  pinMode(LED1, OUTPUT);
+  pinMode(LED2, OUTPUT);
   pinMode(RXLED, OUTPUT);
 }
 
@@ -14,18 +19,17 @@ const unsigned long FIFTEEN_MINUITE = 15L * 60L * 1000L;
 
 void off() {
     digitalWrite(RXLED, LOW);
-//    digitalWrite(15, LOW);
-//    digitalWrite(16, LOW);
-    TXLED0;
+    digitalWrite(LED1, LOW);
+    digitalWrite(LED2, LOW);
     is_pushed = false;
     is_run = false;
 }
 
 void on() {
-  digitalWrite(RXLED, HIGH);
-//  digitalWrite(15, HIGH);
-//  digitalWrite(16, HIGH);
   TXLED1;
+  digitalWrite(RXLED, HIGH);
+  digitalWrite(LED1, HIGH);
+  digitalWrite(LED2, HIGH);
   is_pushed = true;
   is_run = true;
   // switch released?
@@ -37,7 +41,7 @@ void on() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  if (digitalRead(14) == LOW) {
+  if (digitalRead(SW) == LOW) {
     off();
   } else {
     on();
